@@ -33,6 +33,22 @@ class player:
     def draw(self):
         self.image.clip_draw(self.frame*100 , 0, 100,100 , self.x,self.y)
 
+class ball:
+    def __init__(self):
+        self.x,self.y = random.randint(100,700) , 599
+        self.type = random.randint(1,2)
+        if self.type==1:
+            self.image = load_image('ball21x21.png')
+        else:
+            self.image = load_image('ball41x41.png')
+        self.speed = random.randint(10,30)
+    def draw(self):
+        self.image.draw(self.x,self.y)
+    def update(self):
+        self.y-=self.speed
+        
+    
+
 def reset_world():
     global running
     #global grass
@@ -46,6 +62,8 @@ def reset_world():
     world.append(grass)
     team = [player() for i in range(11)]
     world+=team
+    balls = [ball() for i in range(20)]
+    world+=balls
 
 def update_world():
     for o in world:
