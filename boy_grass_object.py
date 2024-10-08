@@ -35,26 +35,27 @@ class player:
 
 def reset_world():
     global running
-    global grass
-    global team
+    #global grass
+    #global team
+    global world
     
     running=True
+    world = []
+    
     grass = Grass()
-    team = [player() for i in range(10)]
+    world.append(grass)
+    team = [player() for i in range(11)]
+    world+=team
 
 def update_world():
-    grass.update()
-    for boy in team:
-        boy.update()
-    pass
+    for o in world:
+        o.update()
 
 def render_world():
     clear_canvas()
-    grass.draw()
-    for boy in team:
-        boy.draw()
+    for o in world:
+        o.draw()
     update_canvas()
-
 
 open_canvas()
 # initialization code
